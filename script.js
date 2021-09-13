@@ -18,6 +18,7 @@ const inputTag = document.createElement('input');
 bodyContent.children[2].appendChild(inputTag);
 inputTag.id = 'texto-tarefa';
 inputTag.placeholder = 'Digite uma nova tarefa!';
+inputTag.style.height = '20px';
 
 const sectionList = document.createElement('section');
 bodyContent.appendChild(sectionList);
@@ -25,3 +26,19 @@ bodyContent.appendChild(sectionList);
 const olTag = document.createElement('ol');
 bodyContent.children[3].appendChild(olTag);
 olTag.id = 'lista-tarefas';
+
+const buttonTag = document.createElement('button');
+bodyContent.children[2].appendChild(buttonTag);
+buttonTag.id = 'criar-tarefa';
+buttonTag.innerText = 'Adicionar nova tarefa';
+buttonTag.style.marginLeft = '20px';
+
+function createNewTask() {
+  const newTask = inputTag.value;
+  const createList = document.querySelector('#lista-tarefas');
+  const liTag = document.createElement('li');
+  createList.appendChild(liTag);
+  liTag.innerText = newTask;
+  inputTag.value = '';
+}
+document.getElementById('criar-tarefa').onclick = function add() { createNewTask(); };
