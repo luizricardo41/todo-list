@@ -13,3 +13,8 @@ const paragraphTag = document.createElement('p');
 bodyContent.children[2].appendChild(paragraphTag);
 paragraphTag.id = 'funcionamento';
 paragraphTag.innerText = 'Clique duas vezes em um item para marcá-lo como completo';
+
+const inputTag = document.createElement('input');
+bodyContent.children[2].appendChild(inputTag);
+inputTag.id = 'texto-tarefa';
+inputTag.placeholder = 'Digite uma nova tarefa!';
