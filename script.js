@@ -6,8 +6,8 @@ const h1Tag = document.createElement('h1');
 bodyContent.children[1].appendChild(h1Tag);
 h1Tag.innerText = 'Minha Lista de Tarefas!';
 
-const sectionParagraph = document.createElement('section');
-bodyContent.appendChild(sectionParagraph);
+const sectionInsertion = document.createElement('section');
+bodyContent.appendChild(sectionInsertion);
 
 const paragraphTag = document.createElement('p');
 bodyContent.children[2].appendChild(paragraphTag);
@@ -18,3 +18,10 @@ const inputTag = document.createElement('input');
 bodyContent.children[2].appendChild(inputTag);
 inputTag.id = 'texto-tarefa';
 inputTag.placeholder = 'Digite uma nova tarefa!';
+
+const sectionList = document.createElement('section');
+bodyContent.appendChild(sectionList);
+
+const olTag = document.createElement('ol');
+bodyContent.children[3].appendChild(olTag);
+olTag.id = 'lista-tarefas';
