@@ -1,3 +1,7 @@
 body {
   background-color: darkblue;
 }
+
+header , #funcionamento {
+  color: white;
+}
