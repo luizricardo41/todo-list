@@ -33,6 +33,22 @@ buttonTag.id = 'criar-tarefa';
 buttonTag.innerText = 'Adicionar nova tarefa';
 buttonTag.style.marginLeft = '20px';
 
+function selectedTask(event) {
+  const eventTargetSelect = event.target;
+  if (eventTargetSelect.style.backgroundColor === 'rgb(128, 128, 128)') {
+    eventTargetSelect.style.backgroundColor = '';
+  } else {
+    eventTargetSelect.style.backgroundColor = 'rgb(128, 128, 128)';
+  }
+}
+
+function addClickList() {
+  const addClick = document.querySelectorAll('#lista-tarefas li');
+  for (let i = 0; i < addClick.length; i += 1) {
+    addClick[i].addEventListener('click', selectedTask);
+  }
+}
+
 function createNewTask() {
   const newTask = inputTag.value;
   const createList = document.querySelector('#lista-tarefas');
@@ -40,5 +56,6 @@ function createNewTask() {
   createList.appendChild(liTag);
   liTag.innerText = newTask;
   inputTag.value = '';
+  addClickList();
 }
 document.getElementById('criar-tarefa').onclick = function add() { createNewTask(); };
