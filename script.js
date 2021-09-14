@@ -35,11 +35,11 @@ buttonTag.style.marginLeft = '20px';
 
 function selectedTask(event) {
   const eventTargetSelect = event.target;
-  if (eventTargetSelect.style.backgroundColor === 'rgb(128, 128, 128)') {
-    eventTargetSelect.style.backgroundColor = '';
-  } else {
-    eventTargetSelect.style.backgroundColor = 'rgb(128, 128, 128)';
+  const checkStyle = document.querySelectorAll('li');
+  for (let i = 0; i < checkStyle.length; i += 1) {
+    checkStyle[i].style.backgroundColor = '';
   }
+  eventTargetSelect.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
 function addClickList() {
