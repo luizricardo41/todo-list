@@ -41,6 +41,12 @@ bodyContent.children[4].appendChild(buttonClearList);
 buttonClearList.id = 'apaga-tudo';
 buttonClearList.innerText = 'Apagar lista de Tarefas';
 
+const buttonClearComplete = document.createElement('button');
+bodyContent.children[4].appendChild(buttonClearComplete);
+buttonClearComplete.id = 'remover-finalizados';
+buttonClearComplete.innerText = 'Remover tarefas finalizadas';
+buttonClearComplete.style.marginLeft = '20px';
+
 function selectedTask(event) {
   const eventTargetSelect = event.target;
   const checkStyle = document.querySelectorAll('li');
@@ -87,3 +93,12 @@ function deleteList() {
   }
 }
 document.getElementById('apaga-tudo').onclick = function clear() { deleteList(); };
+
+function removeTaskComplete() {
+  const checkTaskComplete = document.querySelectorAll('.completed');
+  for (let i = 0; i < checkTaskComplete.length; i += 1) {
+    checkTaskComplete[i].parentNode.removeChild(checkTaskComplete[i]);
+  }
+}
+const clearTaskComplete = document.getElementById('remover-finalizados');
+clearTaskComplete.onclick = function clearComplete() { removeTaskComplete(); };
