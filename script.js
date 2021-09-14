@@ -33,6 +33,14 @@ buttonTag.id = 'criar-tarefa';
 buttonTag.innerText = 'Adicionar nova tarefa';
 buttonTag.style.marginLeft = '20px';
 
+const sectionButtons = document.createElement('section');
+bodyContent.appendChild(sectionButtons);
+
+const buttonClearList = document.createElement('button');
+bodyContent.children[4].appendChild(buttonClearList);
+buttonClearList.id = 'apaga-tudo';
+buttonClearList.innerText = 'Apagar lista de Tarefas';
+
 function selectedTask(event) {
   const eventTargetSelect = event.target;
   const checkStyle = document.querySelectorAll('li');
@@ -71,3 +79,11 @@ function createNewTask() {
   addClickList();
 }
 document.getElementById('criar-tarefa').onclick = function add() { createNewTask(); };
+
+function deleteList() {
+  const checkListContent = document.querySelectorAll('li');
+  for (let i = 0; i < checkListContent.length; i += 1) {
+    checkListContent[i].parentNode.removeChild(checkListContent[i]);
+  }
+}
+document.getElementById('apaga-tudo').onclick = function clear() { deleteList(); };
