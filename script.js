@@ -42,10 +42,22 @@ function selectedTask(event) {
   eventTargetSelect.style.backgroundColor = 'rgb(128, 128, 128)';
 }
 
+function completeTask(event) {
+  const eventTargetComplete = event.target;
+  if (eventTargetComplete.style.textDecoration === '') {
+    eventTargetComplete.classList.add('completed');
+    eventTargetComplete.style.textDecoration = 'line-through';
+  } else {
+    eventTargetComplete.classList.remove('completed');
+    eventTargetComplete.style.textDecoration = '';
+  }
+}
+
 function addClickList() {
   const addClick = document.querySelectorAll('#lista-tarefas li');
   for (let i = 0; i < addClick.length; i += 1) {
     addClick[i].addEventListener('click', selectedTask);
+    addClick[i].addEventListener('dblclick', completeTask);
   }
 }
 
