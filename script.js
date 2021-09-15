@@ -45,25 +45,27 @@ const buttonClearComplete = document.createElement('button');
 bodyContent.children[4].appendChild(buttonClearComplete);
 buttonClearComplete.id = 'remover-finalizados';
 buttonClearComplete.innerText = 'Remover tarefas finalizadas';
-buttonClearComplete.style.marginLeft = '20px';
 
 const buttonSaveTasks = document.createElement('button');
 bodyContent.children[4].appendChild(buttonSaveTasks);
 buttonSaveTasks.id = 'salvar-tarefas';
 buttonSaveTasks.innerText = 'Salvar tarefas';
-buttonSaveTasks.style.marginLeft = '20px';
 
 const buttonUp = document.createElement('button');
 bodyContent.children[4].appendChild(buttonUp);
 buttonUp.id = 'mover-cima';
 buttonUp.innerText = 'Mover tarefa para cima';
-buttonUp.style.marginLeft = '20px';
+buttonUp.style.display = 'inline-block';
 
 const buttonDown = document.createElement('button');
 bodyContent.children[4].appendChild(buttonDown);
 buttonDown.id = 'mover-baixo';
 buttonDown.innerText = 'Mover tarefa para baixo';
-buttonDown.style.marginLeft = '20px';
+
+const buttonRemoveSelected = document.createElement('button');
+bodyContent.children[4].appendChild(buttonRemoveSelected);
+buttonRemoveSelected.id = 'remover-selecionado';
+buttonRemoveSelected.innerText = 'Remover item';
 
 const colorGray = 'rgb(128, 128, 128)';
 
@@ -96,13 +98,15 @@ function addClickList() {
 }
 
 function createNewTask() {
-  const newTask = inputTag.value;
-  const createList = document.querySelector('#lista-tarefas');
-  const liTag = document.createElement('li');
-  createList.appendChild(liTag);
-  liTag.innerText = newTask;
-  inputTag.value = '';
-  addClickList();
+  if (inputTag.value !== '') {
+    const newTask = inputTag.value;
+    const createList = document.querySelector('#lista-tarefas');
+    const liTag = document.createElement('li');
+    createList.appendChild(liTag);
+    liTag.innerText = newTask;
+    inputTag.value = '';
+    addClickList();
+  }
 }
 document.getElementById('criar-tarefa').onclick = function add() { createNewTask(); };
 
@@ -202,3 +206,14 @@ function DownTaskSelected() {
   }
 }
 document.getElementById('mover-baixo').onclick = function moveDown() { DownTaskSelected(); };
+
+function removeTaskSelected() {
+  const taskSelected = document.querySelectorAll('li');
+  for (let i = 0; i < taskSelected.length; i += 1) {
+    if (taskSelected[i].style.backgroundColor === colorGray) {
+      taskSelected[i].parentNode.removeChild(taskSelected[i]);
+    }
+  }
+}
+const removeTask = document.getElementById('remover-selecionado');
+removeTask.onclick = function deleteSelected() { removeTaskSelected(); };
