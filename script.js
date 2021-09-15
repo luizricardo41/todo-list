@@ -53,13 +53,27 @@ buttonSaveTasks.id = 'salvar-tarefas';
 buttonSaveTasks.innerText = 'Salvar tarefas';
 buttonSaveTasks.style.marginLeft = '20px';
 
+const buttonUp = document.createElement('button');
+bodyContent.children[4].appendChild(buttonUp);
+buttonUp.id = 'mover-cima';
+buttonUp.innerText = 'Mover tarefa para cima';
+buttonUp.style.marginLeft = '20px';
+
+const buttonDown = document.createElement('button');
+bodyContent.children[4].appendChild(buttonDown);
+buttonDown.id = 'mover-baixo';
+buttonDown.innerText = 'Mover tarefa para baixo';
+buttonDown.style.marginLeft = '20px';
+
+const colorGray = 'rgb(128, 128, 128)';
+
 function selectedTask(event) {
   const eventTargetSelect = event.target;
   const checkStyle = document.querySelectorAll('li');
   for (let i = 0; i < checkStyle.length; i += 1) {
     checkStyle[i].style.backgroundColor = '';
   }
-  eventTargetSelect.style.backgroundColor = 'rgb(128, 128, 128)';
+  eventTargetSelect.style.backgroundColor = colorGray;
 }
 
 function completeTask(event) {
@@ -157,3 +171,34 @@ function pullSavedData() {
 window.onload = function loadPage() {
   pullSavedData();
 };
+
+function upTaskSelected() {
+  const taskSelected = document.querySelectorAll('li');
+  for (let i = 0; i < taskSelected.length; i += 1) {
+    if (taskSelected[i].style.backgroundColor === colorGray && i !== 0) {
+      const auxText = taskSelected[i - 1].innerText;
+      const textOfTask = taskSelected[i].innerText;
+      taskSelected[i - 1].innerText = textOfTask;
+      taskSelected[i].innerText = auxText;
+      taskSelected[i - 1].style.backgroundColor = colorGray;
+      taskSelected[i].style.backgroundColor = '';
+    }
+  }
+}
+document.getElementById('mover-cima').onclick = function moveUp() { upTaskSelected(); };
+
+function DownTaskSelected() {
+  const taskSelected = document.querySelectorAll('li');
+  for (let i = 0; i < taskSelected.length; i += 1) {
+    if (taskSelected[i].style.backgroundColor === colorGray && i !== taskSelected.length - 1) {
+      const auxText = taskSelected[i + 1].innerText;
+      const textOfTask = taskSelected[i].innerText;
+      taskSelected[i + 1].innerText = textOfTask;
+      taskSelected[i].innerText = auxText;
+      taskSelected[i + 1].style.backgroundColor = colorGray;
+      taskSelected[i].style.backgroundColor = '';
+      i += 1;
+    }
+  }
+}
+document.getElementById('mover-baixo').onclick = function moveDown() { DownTaskSelected(); };
