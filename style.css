@@ -35,14 +35,12 @@ button {
   margin-top: 10px;
 }
 
-ol {
-  border-radius: 50px;
+li {
+  /* border-radius: 50px; */
+  border: 1px solid black;
   background-color: white;
   width: 500px;
-}
-
-li {
-  margin-right: 30px;
+  padding: 0.05rem;
 }
 
 h1 {
